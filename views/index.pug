@@ -1,0 +1,18 @@
+extends layout
+
+block content
+  h1= title
+  p I'm Pavani Reddy Karumuri is good but bad #{title}
+  button(type="button", class="btn btn-outline-success", onclick="doReduce()") PressMe
+
+  div(id = "reduce") Reduce the value
+  a(href="gold") LINK
+  script.
+      count = 20
+      change  = -1
+      function doReduce(){
+          count += change;
+          change = change  - 1;
+          document.getElementById('reduce').innerHTML = `Count ${count} Change ${change}`;
+      }
+  

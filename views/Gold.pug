@@ -1,0 +1,18 @@
+extends layout
+
+block content
+  h1= title
+  - let results = [{Gold_weight:"10.0",Gold_shop:"Pavani Jewellery",Gold_cost:"52000"},{Gold_weight:"9.0",Gold_shop:"Lakshmi Jewellery",Gold_cost:"42000"},{Gold_weight:"7.0",Gold_shop:"Lalitha Jewellery",Gold_cost:"32000"}]
+  div(class="container-fluid")
+    div(class="row")
+      each item,index in results
+        div(class="col-sm-2",onClick=`buy(${index})`)
+          p Weight is #{item.Gold_weight}
+          p Shop is #{item.Gold_shop}
+          p Cost is #{item.Gold_cost}
+          //- Bonus Logic
+  script.
+    function buy(quantity) {
+      quantity = quantity+1;
+      alert(`You Purchased Item ${quantity}`);
+    }
