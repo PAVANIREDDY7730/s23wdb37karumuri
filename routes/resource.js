@@ -18,12 +18,4 @@ router.get('/golds/:id', gold_controller.gold_detail);
 // GET request for list of all gold items.
 router.get('/golds', gold_controller.gold_list);
 module.exports = router;
-// API for our resources
-exports.api = function(req, res) {
-res.write('[');
-res.write('{"resource":"golds" ');
-res.write(' "verbs":["GET","PUT", "DELETE"] ');
-res.write('}');
-res.write(']')
-res.send();
-};
+
