@@ -1,0 +1,50 @@
+
+block content
+    h1= title
+    
+    if (toShow == null)
+        h2 No instance to delete
+    else
+        -let goldid = toShow._id
+        -let Gold_weight = toShow.Gold_weight
+        - let Gold_shop = toShow.Gold_shop
+        - let Gold_cost = toShow.Gold_cost
+        - let actionid = "/resource/golds/" + goldid
+        script let actionid = "#{actionid}"
+        div
+            div.row
+                div(class='goldAttr mr-3') gold ID is:
+                div #{goldid}
+            div.row
+                div(class='goldAttr mr-3') golds weight is:
+                div #{Gold_weight}
+            div.row
+                div(class='goldAttr mr-3') golds shop is:
+                div #{Gold_shop}
+            div.row
+                div(class='goldAttr mr-3') golds Cost is:
+                div #{Gold_cost}
+        
+        button(class="btn btn-danger m-2" onclick="deleteOnid()") Delete
+        button(class="btn btn-secondary m-2" onclick="cancel()") Cancel
+    script.
+            function cancel() {
+            // Go back to the home page for the deodorant collection
+            window.location.href='/golds'
+            }
+    script.
+                function deleteOnid() {
+                // delete first
+                fetch(actionid, {
+                method: 'DELETE' // Don't need a body for the delete
+                }).then((resp) => {
+                return resp.json(); // or resp.text() or whatever the server sends
+                }).then((body) => {
+                alert("Delete succeded")
+                window.location.href='/golds'
+                // TODO handle body
+                }).catch((error) => {
+                // TODO handle error
+                alert("Delete failed " + error )
+                });
+                }

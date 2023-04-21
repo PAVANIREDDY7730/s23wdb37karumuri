@@ -1,0 +1,33 @@
+extends layout
+
+block content
+ h1= title
+ form(id='goldForm' action="/resource/golds" method="POST")
+  div.form-group
+      label.goldAttr(for='Gold_weight') gold weight
+      input#gold_weight(type='text' name='Gold_weight')
+  div.form-group
+      label.goldAttr(for='Gold_shop') gold shop
+      input#gold_shop(type='text' name='Gold_shop')
+  div.form-group
+      label.goldAttr(for='Gold_cost') gold cost
+      input#price(type='number' name='Gold_cost')
+      input(type="submit")
+      script.
+        document.forms['goldForm'].addEventListener('submit', (event) => {
+        event.preventDefault();
+        // TODO do something here to show user that form is being submitted
+        fetch(event.target.action, {
+        method: 'POST',
+        body: new URLSearchParams(new FormData(event.target)) // event.target is the form
+        }).then((resp) => {
+        return resp.json(); // or resp.text() or whatever the server sends
+        }).then((body) => {
+        alert("Save succeded")
+        window.location.href='/golds'
+            // TODO handle body
+        }).catch((error) => {
+            // TODO handle error
+        alert("Save failed " + error )
+        });
+        });
